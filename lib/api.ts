@@ -10,6 +10,16 @@ export interface NotesResponse {
   totalPages?: number;
 }
 
+export async function fetchNotesResponse() {
+  const res = await axios.get<NotesResponse>('/notes', {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return res.data.notes;
+}
+
 export async function fetchNotes(page: number = 1, search: string) {
   const res = await axios.get<NotesResponse>('/notes', {
     params: {

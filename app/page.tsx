@@ -3,7 +3,7 @@ import css from './Home.module.css';
 export default async function Home() {
   return (
     <main>
-      <div className={css.container}>
+      <div className={css.container} style={{ backgroundColor: 'lightblue', padding: 8 }}>
         <h1 className={css.title}>Welcome to NoteHub</h1>
         <p className={css.description}>
           NoteHub is a simple and efficient application designed for managing personal notes. It
