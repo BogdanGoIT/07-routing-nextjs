@@ -1,9 +1,18 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useQuery } from '@tanstack/react-query';
+import { fetchNoteById } from '@/lib/api';
+import { useParams, useRouter } from 'next/navigation';
 
 export default function NotePreview() {
+  const { id } = useParams<{ id: string }>();
   const router = useRouter();
+
+  const { data: note } = useQuery({
+    queryKey: ['note', id],
+    queryFn: () => fetchNoteById(id),
+    refetchOnMount: false,
+  });
 
   return (
     <div
@@ -27,7 +36,8 @@ export default function NotePreview() {
           borderRadius: '8px',
         }}
       >
-        <h1>NotePreview</h1>
+        <h2>{note?.title}</h2>
+        <p>{note?.content}</p>
         <button onClick={() => router.back()}>Close</button>
       </div>
     </div>
