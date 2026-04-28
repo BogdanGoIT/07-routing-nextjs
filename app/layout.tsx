@@ -33,9 +33,7 @@ export default function RootLayout({
       <body>
         <TanStackProvider>
           <Header />
-          {/* <AppHeader /> */}
-          <div style={{ backgroundColor: 'lightcoral', padding: 8 }}>
-            <h1>Root layout (app/layout.tsx)</h1>
+          <div>
             {children}
             {modal}
           </div>

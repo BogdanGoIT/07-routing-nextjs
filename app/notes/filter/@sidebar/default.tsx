@@ -1,10 +1,9 @@
 import Link from 'next/link';
 import css from './SidebarNotes.module.css';
-import { fetchNotesResponse } from '@/lib/api';
+
+const tags = ['Todo', 'Work', 'Personal', 'Meeting', 'Shopping'];
 
 export default async function SidebarNotes() {
-  const notes = await fetchNotesResponse();
-  console.log(notes);
   return (
     <ul className={css.menuList}>
       {/* список тегів */}
@@ -13,14 +12,13 @@ export default async function SidebarNotes() {
           All notes
         </Link>
       </li>
-      {notes &&
-        notes.map(note => (
-          <li key={note.id} className={css.menuItem}>
-            <Link href={`/notes/filter/${note.tag}`} className={css.menuLink}>
-              {note.tag}
-            </Link>
-          </li>
-        ))}
+      {tags.map(tag => (
+        <li key={tag} className={css.menuItem}>
+          <Link href={`/notes/filter/${tag}`} className={css.menuLink}>
+            {tag}
+          </Link>
+        </li>
+      ))}
     </ul>
   );
 }

@@ -1,7 +1,8 @@
 'use client';
+
 import { useRouter } from 'next/navigation';
 
-export default function ImageModal() {
+export default function NotePreview() {
   const router = useRouter();
 
   return (
@@ -26,13 +27,9 @@ export default function ImageModal() {
           borderRadius: '8px',
         }}
       >
-        <h1>Image Modal</h1>
+        <h1>NotePreview</h1>
         <button onClick={() => router.back()}>Close</button>
       </div>
     </div>
   );
 }
-
-// http://localhost:3000/gallery
-// http://localhost:3000/gallery/5668882
-// http://localhost:3000/gallery
