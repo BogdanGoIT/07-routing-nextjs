@@ -12,19 +12,31 @@ type Props = {
 export default function NotePreviewClient({ id }: Props) {
   const router = useRouter();
 
-  const { data: note } = useQuery({
+  const {
+    data: note,
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ['note', id],
     queryFn: () => fetchNoteById(id),
     refetchOnMount: false,
   });
 
+  const handleBack = () => router.back();
+
   return (
-    <Modal onClose={() => router.back()}>
-      <h2>{note?.title}</h2>
-      <p>{note?.content}</p>
-      <p>{note?.tag}</p>
-      <p>{note?.createdAt}</p>
-      <button onClick={() => router.back()}>Close</button>
+    <Modal onClose={handleBack}>
+      {isLoading && <p>Loading note details...</p>}
+      {isError && <p>Failed to load note. Please try again later.</p>}
+      {note && (
+        <>
+          <h2>{note.title}</h2>
+          <p>{note.content}</p>
+          <p>{note.tag}</p>
+          <p>{note.createdAt}</p>
+          <button onClick={handleBack}>Close</button>
+        </>
+      )}
     </Modal>
   );
 }
