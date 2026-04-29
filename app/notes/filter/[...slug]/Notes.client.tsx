@@ -10,12 +10,12 @@ import NoteList from '@/components/NoteList/NoteList';
 import Pagination from '@/components/Pagination/Pagination';
 import SearchBox from '@/components/SearchBox/SearchBox';
 import { fetchNotes } from '@/lib/api';
-import { useParams } from 'next/navigation';
 
-export default function NotesClient() {
-  const { slug } = useParams<{ slug: string[] }>();
-  const category = slug[0] === 'all' ? undefined : slug[0];
+type Props = {
+  category: string;
+};
 
+export default function NotesClient({ category }: Props) {
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState('');
   const [isOpenModal, setIsOpenModal] = useState(false);
