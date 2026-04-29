@@ -12,7 +12,7 @@ import SearchBox from '@/components/SearchBox/SearchBox';
 import { fetchNotes } from '@/lib/api';
 
 type Props = {
-  category: string;
+  category?: string;
 };
 
 export default function NotesClient({ category }: Props) {
